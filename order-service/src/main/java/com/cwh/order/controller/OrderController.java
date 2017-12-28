@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 @RestController
 public class OrderController {
-    @Value("${server.port}")
+    @Value("${foo}")
+    String foo;
+    @Value("${port}")
     String port;
+
     @Autowired
     OrderService orderService;
 
@@ -32,5 +35,10 @@ public class OrderController {
     @RequestMapping(value = "/getOrderByName")
     public String getOrderByName(String name) {
         return orderService.getOrderByName(name);
+    }
+
+    @RequestMapping(path = "/getPropertiese")
+    public String getPropertiese() {
+        return "foo:"+foo+",port:"+port;
     }
 }
